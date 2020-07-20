@@ -42,6 +42,8 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
                             <div class="dropdown-divider"></div>
+                        <a href="{{ route('admin.editprofil') }}"  class="dropdown-item"><i class="fas fa-user"></i> Edit Profil</a>
+                            <a href="{{ route('admin.editkatasandi') }}"  class="dropdown-item"><i class="fas fa-key"></i> Ubah Katasandi</a>
                             <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -94,10 +96,17 @@
                                     class="fas fa-fire"></i><span>Transaksi</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('admin.transaksi') }}">Semua Transaksi</a></li>
-                                <li><a class="nav-link" href="{{ route('admin.transaksi.belumdicek') }}">Belum Dicek</a></li>
+                                <li><a class="nav-link" href="{{ route('admin.transaksi.belumdicek') }}">Belum Dicek</a>
+                                </li>
                                 <li><a class="nav-link" href="{{ route('admin.transaksi.ditolak') }}">Ditolak</a></li>
-                                <li class=""><a class="nav-link" href="{{ route('admin.transaksi.disetujui') }}">Disetujui</a></li>
+                                <li class=""><a class="nav-link"
+                                        href="{{ route('admin.transaksi.disetujui') }}">Disetujui</a></li>
                             </ul>
+                        </li>
+                        <li class="{{Request::path() == 'admin/setting' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.setting') }}">
+                                <i class="fas fa-newspaper"></i><span>Pengaturan</span>
+                            </a>
                         </li>
                     </ul>
                 </aside>

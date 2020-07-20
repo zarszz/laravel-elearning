@@ -15,7 +15,11 @@ class WelcomeController extends Controller
             'kelas' => Kelas::all()
         ];
 
-        return view('front.welcome',$data);
+        return view('front.welcome', $data);
     }
 
+    public function about()
+    {
+        return view('front.about');
+    }
 }

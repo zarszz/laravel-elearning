@@ -34,7 +34,7 @@
                                 </td>
                                 <td>{{ substr($item->created_at,0,10) }}</td>
                                 <td>
-                                    <a href="{{ route('admin.podcast.detail',Crypt::encrypt($item->id)) }}"
+                                    <a href="{{ route('admin.blog.detail',Crypt::encrypt($item->id)) }}"
                                         class="btn btn-warning">Detail</a>
                                 </td>
                             </tr>

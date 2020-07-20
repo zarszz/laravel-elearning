@@ -65,7 +65,10 @@
             @endif
 
             @if($cek->count() < 1) <div class="col-md-6 mx-auto">
-                <h4>Silahkan transfer sebesar Rp.400.000,00 ke no rekening di bawah ini</h4>
+                @php
+                    $setting = \App\Setting::first()
+                @endphp
+                <h4>Silahkan transfer sebesar Rp.{{ number_format($setting->harga,2,',','.') }} ke no rekening di bawah ini</h4>
                 <ul>
                     @foreach ($rekening as $item)
                     <li>- {{ $item->no_rekening }} a.n <b>{{ $item->atas_nama }}</b></li>

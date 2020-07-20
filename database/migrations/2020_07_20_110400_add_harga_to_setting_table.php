@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePodcastTable extends Migration
+class AddHargaToSettingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePodcastTable extends Migration
      */
     public function up()
     {
-        Schema::create('podcast', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_podcast');
-            $table->string('url_podcast');
-            $table->text('description_podcast');
-            $table->timestamps();
+        Schema::table('setting', function (Blueprint $table) {
+            $table->string('harga');
         });
     }
 
@@ -29,6 +25,8 @@ class CreatePodcastTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('podcast');
+        Schema::table('setting', function (Blueprint $table) {
+            //
+        });
     }
 }

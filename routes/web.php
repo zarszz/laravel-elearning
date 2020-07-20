@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'front\WelcomeController@index')->name('welcome');
+Route::get('/about', 'front\WelcomeController@about')->name('about');
 Route::get('/kelas', 'front\KelasController@index')->name('kelas');
 Route::get('/kelas/detail/{id}', 'front\KelasController@detail')->name('kelas.detail');
 Route::get('/kelas/belajar/{id}/{idvideo}', 'front\KelasController@belajar')->name('kelas.belajar');
@@ -66,6 +67,10 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/admin/blog', 'admin\BlogController@index')->name('admin.blog');
     Route::get('/admin/blog/tambah', 'admin\BlogController@tambah')->name('admin.blog.tambah');
     Route::post('/admin/blog/simpan', 'admin\BlogController@simpan')->name('admin.blog.simpan');
+    Route::get('/admin/blog/hapus/{id}', 'admin\BlogController@hapus')->name('admin.blog.hapus');
+    Route::get('/admin/blog/detail/{id}', 'admin\BlogController@detail')->name('admin.blog.detail');
+    Route::get('/admin/blog/edit/{id}', 'admin\BlogController@edit')->name('admin.blog.edit');
+    Route::post('/admin/blog/update/{id}', 'admin\BlogController@update')->name('admin.blog.update');
 
     //Transaksi
     Route::get('/admin/transaksi', 'admin\TransaksiController@index')->name('admin.transaksi');
@@ -74,6 +79,15 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/admin/transaksi/disetujui', 'admin\TransaksiController@disetujui')->name('admin.transaksi.disetujui');
     Route::get('/admin/transaksi/detail/{id}', 'admin\TransaksiController@detail')->name('admin.transaksi.detail');
     Route::post('/admin/transaksi/ubah/{id}', 'admin\TransaksiController@ubah')->name('admin.transaksi.ubah');
+
+    Route::get('/admin/setting', 'admin\SettingController@index')->name('admin.setting');
+    Route::post('/admin/setting/simpan', 'admin\SettingController@simpan')->name('admin.setting.simpan');
+
+    Route::get('/admin/editprofil', 'admin\UserController@editprofil')->name('admin.editprofil');
+    Route::post('/admin/simpaneditprofil', 'admin\UserController@simpaneditprofil')->name('admin.simpaneditprofil');
+
+    Route::get('/admin/editkatasandi', 'admin\UserController@editkatasandi')->name('admin.editkatasandi');
+    Route::post('/admin/simpaneditkatasandi', 'admin\UserController@simpaneditkatasandi')->name('admin.simpaneditkatasandi');
 });
 
 Auth::routes();
