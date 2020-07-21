@@ -69,7 +69,7 @@ class KelasController extends Controller
     {
         $dec_id = Crypt::decrypt($id);
         $kelas = Kelas::find($dec_id);
-        Storage::delete($kelas->thumbnail);
+        Storage::delete('public/'.$kelas->thumbnail);
         Video::where('kelas_id', '=', $dec_id)->delete();
         $kelas->delete();
         return redirect()->route('admin.kelas')->with('status', 'Berhasil Menghapus Kelas');
@@ -101,7 +101,7 @@ class KelasController extends Controller
 
             $kelas = Kelas::find($dec_id);
             if ($request->file('thumbnail')) {
-                Storage::delete('public/'.$kelas->thumbnail);
+                Storage::delete('public/'.'public/'.$kelas->thumbnail);
                 $file = $request->file('thumbnail')->store('thumbnail_kelas', 'public');
                 $kelas->name_kelas = $request->name_kelas;
                 $kelas->type_kelas = Crypt::decrypt($request->type_kelas);

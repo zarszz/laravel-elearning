@@ -34,17 +34,17 @@
                     <h4 class="title">Daftar Materi</h4>
                     <div class="content">
                         <ul class="course_list">
-                            @if ($kelas->video->count() < 1)
-                            <li class="justify-content-between align-items-center d-flex">
+                            @if ($kelas->video->count() < 1) <li
+                                class="justify-content-between align-items-center d-flex">
                                 <p>Belum Ada Materi</p>
-                            </li>
-                            @else
-                            @foreach ($kelas->video as $item)
-                            <li class="justify-content-between align-items-center d-flex">
-                                <p>{{ $item->name_video }}</p>
-                            </li>
-                            @endforeach
-                            @endif
+                                </li>
+                                @else
+                                @foreach ($kelas->video as $item)
+                                <li class="justify-content-between align-items-center d-flex">
+                                    <p>{{ $item->name_video }}</p>
+                                </li>
+                                @endforeach
+                                @endif
                         </ul>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     @else
                     @guest
                     Anda harus membuat akun untuk mengakses kelas ini
-                    <a href="#" class="btn_1 d-block">Buat Akun</a>
+                    <a href="{{ route('register') }}" class="btn_1 d-block">Buat Akun</a>
                     @else
                     @if($kelas->type_kelas == 1)
                     <a href="{{ route('kelas.belajar',[
@@ -99,7 +99,7 @@
                     ]) }}" class="btn_1 d-block">Belajar</a>
                     @else
                     Upgrade akun Anda ke premium untuk mengakses kelas ini
-                    <a href="#" class="btn_1 d-block">Upgrade Premium</a>
+                    <a href="{{ route('upgradepremium') }}" class="btn_1 d-block">Upgrade Premium</a>
                     @endif
                     @endif
                     @endguest

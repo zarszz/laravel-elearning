@@ -64,7 +64,10 @@ class BlogController extends Controller
 
     public function hapus($id)
     {
+
         $dec_id = Crypt::decrypt($id);
+        $blog = Blog::find($dec_id);
+        Storage::delete('public/' . $blog->thumbnail_blog);
         Blog::where('id', '=', $dec_id)->delete();
         return redirect()->route('admin.blog')->with('status', 'Berhasil Menghapus Blog');
     }
@@ -95,7 +98,7 @@ class BlogController extends Controller
 
             if ($request->file('thumbnail_blog')) {
                 $blog = Blog::find($dec_id);
-                Storage::delete($blog->thumbnail_blog);
+                Storage::delete('public/' . $blog->thumbnail_blog);
                 $file = $request->file('thumbnail_blog')->store('thumbnail_blog', 'public');
 
                 $obj = [
@@ -110,8 +113,8 @@ class BlogController extends Controller
                 ];
             }
 
-            Blog::where('id','=',$dec_id)->update($obj);
-            return redirect()->route('admin.blog.detail',$id)->with('status', 'Berhasil Memperbarui');
+            Blog::where('id', '=', $dec_id)->update($obj);
+            return redirect()->route('admin.blog.detail', $id)->with('status', 'Berhasil Memperbarui');
         }
     }
 }
